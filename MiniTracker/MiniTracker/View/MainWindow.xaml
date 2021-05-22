@@ -1,0 +1,76 @@
+﻿<Window x:Class="MiniTracker.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiniTracker.View"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="450"
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
+            <ListView x:Name="ViewAllTasks"
+                      ItemsSource="{Binding AllItems}"
+                      SelectedItem="{Binding SelectedTask}"
+                      FontWeight="Bold"
+                      Margin="0 0 24 0"
+                      Background="White"
+                      BorderBrush="#FFD5DEEE"
+                      Foreground="#FF112AEF">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Наименование задачи"
+                                        DisplayMemberBinding="{Binding Path=TaskName}"/>
+                        <GridViewColumn Header="Описание задачи"
+                                        DisplayMemberBinding="{Binding Path=TaskDescription}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </TabControl>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <Button Margin="10 0 5 0"
+                    Height="45"
+                    Width="150"
+                    Foreground="White"
+                    Background="Blue"
+                    FontSize="18px"
+                    FontWeight="Bold"
+                    Content="Новая задача"
+                    Command="{Binding OpenAddTaskWindow}"/>
+            <Button Margin="10 0 5 0"
+                    Height="45"
+                    Width="150"
+                    Foreground="White"
+                    Background="Gold"
+                    FontSize="18px"
+                    FontWeight="Bold"
+                    Content="Редактировать"
+                    Command="{Binding OpenEditTaskWindow}"/>
+            <Button Margin="10 0 5 0"
+                    Height="45"
+                    Width="150"
+                    Foreground="White"
+                    Background="Red"
+                    FontSize="18px"
+                    FontWeight="Bold"
+                    Content="Удалить"
+                    Command="{Binding DeleteTask}"/>
+            <Button Margin="120 0 10 0"
+                    Height="45"
+                    Width="150"
+                    Foreground="White"
+                    Background="Green"
+                    FontSize="18px"
+                    FontWeight="Bold"
+                    Content="Задача решена"
+                    Command="{Binding DecisionTask}"/>
+        </StackPanel>
+    </Grid>
+</Window>
